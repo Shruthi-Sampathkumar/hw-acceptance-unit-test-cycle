@@ -23,3 +23,13 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+#Then /^the director of "([^"]*)" should be "([^"]*)"$/ do |arg1, arg2|
+  #puts arg1.is_a?(String)
+   #assert page.body =~ '#{arg1} .+ arg2'
+#end 
+
+Then /^the director of "(.*?)" should be "(.*?)"$/ do |movie_title, new_director|
+  movie = Movie.find_by_title movie_title
+  movie.director.should == new_director
+end
